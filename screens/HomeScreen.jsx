@@ -1,4 +1,11 @@
-import { View, Text, SafeAreaView, Image } from "react-native";
+import {
+  View,
+  Text,
+  SafeAreaView,
+  Image,
+  TextInput,
+  ScrollView,
+} from "react-native";
 import React, { useLayoutEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
 import SafeViewAndroid from "../components/SafeViewAndroid/SafeViewAndroid";
@@ -7,7 +14,10 @@ import {
   UserIcon,
   ChevronDownIcon,
   AdjustmentsHorizontalIcon,
+  MagnifyingGlassIcon,
 } from "react-native-heroicons/outline";
+import Categories from "../components/Categories";
+import FeaturedRow from "../components/FeaturedRow";
 
 const HomeScreen = () => {
   const navigation = useNavigation();
@@ -21,9 +31,9 @@ const HomeScreen = () => {
   return (
     <>
       <SafeAreaView style={SafeViewAndroid.AndroidSafeArea}>
-        <View className="flex-row bg-white py-5">
+        <View className="bg-white p-5 pb-3">
           {/* Header */}
-          <View className="flex-row items-center mx-4 space-x-4 flex-1 w-full">
+          <View className="flex-row mb-3">
             <View className="flex-row flex-1 items-center space-x-2">
               <Image source={Logo} className="h-10 w-10" />
               <View>
@@ -42,13 +52,42 @@ const HomeScreen = () => {
             <UserIcon size={35} color="#f59e0b" />
           </View>
           {/* Search */}
-          <View>
-            <View></View>
-            {/* <AdjustmentsHorizontalIcon size={20} color="#f59e0b" /> */}
+          <View className="flex-row space-x-2 items-center">
+            <View className="flex-row flex-1 space-x-2 bg-gray-100 p-2 rounded-md">
+              <MagnifyingGlassIcon size={30} color="gray" />
+              <TextInput
+                className="placeholder:italic placeholder:text-white"
+                placeholder="Restaurants and cuisines"
+                keyboardType="default"
+              />
+            </View>
+            <AdjustmentsHorizontalIcon size={30} color="#f59e0b" />
           </View>
         </View>
       </SafeAreaView>
-      <View className="bg-gray-100 flex-1"></View>
+      {/* Body */}
+      <ScrollView className="bg-gray-100 flex-1">
+        {/* Categories */}
+        <Categories />
+        {/* Featured */}
+        <FeaturedRow
+          id="1test"
+          title="Featured"
+          description="Paid placements from our partners"
+        />
+        {/* Tasty Discount */}
+        <FeaturedRow
+          id="2test"
+          title="Tasty Discount"
+          description="Paid placements from our partners"
+        />
+        {/* Offers near you */}
+        <FeaturedRow
+          id="3test"
+          title="Offers near you"
+          description="Paid placements from our partners"
+        />
+      </ScrollView>
     </>
   );
 };
