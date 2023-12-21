@@ -6,7 +6,7 @@ import {
   TextInput,
   ScrollView,
 } from "react-native";
-import React, { useLayoutEffect } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import SafeViewAndroid from "../components/SafeViewAndroid/SafeViewAndroid";
 import Logo from "../assets/logo.png";
@@ -18,9 +18,11 @@ import {
 } from "react-native-heroicons/outline";
 import Categories from "../components/Categories";
 import FeaturedRow from "../components/FeaturedRow";
+import client from "../sanity";
 
 const HomeScreen = () => {
   const navigation = useNavigation();
+  const [featuredCategories, setFeaturedCategories] = useState([]);
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -28,6 +30,17 @@ const HomeScreen = () => {
     });
   }, []);
 
+  useEffect(() => {
+    client
+      .fetch(
+        `*[_type == "featured"] {
+  restaurants[]->{..., dishes[]->}}`
+      )
+      .then((data) => {
+        setFeaturedCategories(data);
+      });
+  }, []);
+  console.log("featuredCategories:", featuredCategories);
   return (
     <>
       <SafeAreaView style={SafeViewAndroid.AndroidSafeArea}>
@@ -35,7 +48,7 @@ const HomeScreen = () => {
           {/* Header */}
           <View className="flex-row mb-3">
             <View className="flex-row flex-1 items-center space-x-2">
-              <Image source={Logo} className="h-10 w-10" />
+              <Image source={Logo} className="h-10 w-9" />
               <View>
                 <Text className="font-bold text-gray-400 text-xs">
                   Deliver now!
