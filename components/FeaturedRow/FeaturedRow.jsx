@@ -26,7 +26,7 @@ const FeaturedRow = ({ id, title, description }) => {
         { id }
       )
       .then((data) => setRestaurants(data?.restaurants));
-  }, []);
+  }, [id]);
 
   return (
     <View>
@@ -50,7 +50,6 @@ const FeaturedRow = ({ id, title, description }) => {
               key={restaurant._id}
               id={restaurant._id}
               imgUrl={restaurant.image}
-              // imgUrl="https://img.freepik.com/free-photo/top-view-tasty-cooked-fish-with-vegetables-and-lemon-slices-on-dark-table_140725-143861.jpg?w=996&t=st=1703027700~exp=1703028300~hmac=78f3e32577f7627ce373404c052924c612103b95e7baf28fed5edbba6314e223"
               title={restaurant.name}
               rating={restaurant.rating}
               genre={restaurant.type?.name}
