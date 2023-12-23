@@ -12,6 +12,7 @@
     "@expo/webpack-config": "^19.0.0",
     "@react-navigation/native": "^6.1.9",
     "@react-navigation/native-stack": "^6.9.17",
+    "@reduxjs/toolkit": "^2.0.1",
     "@sanity/client": "^6.10.0",
     "@sanity/image-url": "^1.0.2",
     "expo": "~49.0.15",
@@ -26,6 +27,7 @@
     "react-native-screens": "~3.22.0",
     "react-native-svg": "13.9.0",
     "react-native-web": "~0.19.6",
+    "react-redux": "^9.0.4",
     "uuid": "^8.3.2"
   },
   "devDependencies": {
