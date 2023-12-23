@@ -40,7 +40,7 @@ restaurants[]->{..., dishes[]->}}`
         setFeaturedCategories(data);
       });
   }, []);
-  // console.log("featuredCategories:", featuredCategories);
+
   return (
     <>
       <SafeAreaView style={SafeViewAndroid.AndroidSafeArea}>
