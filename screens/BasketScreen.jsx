@@ -10,7 +10,11 @@ import React, { useMemo, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { useDispatch, useSelector } from "react-redux";
 import { selectRestaurant } from "../features/restaurantSlice";
-import { removeFromBasket, selectBasketItems } from "../features/basketSlice";
+import {
+  removeFromBasket,
+  selectBasketItems,
+  selectBasketTotal,
+} from "../features/basketSlice";
 import SafeViewAndroid from "../components/SafeViewAndroid/SafeViewAndroid";
 import { XCircleIcon } from "react-native-heroicons/solid";
 import Logo from "../assets/logo.png";
@@ -21,6 +25,7 @@ const BasketScreen = () => {
   const navigation = useNavigation();
   const restaurant = useSelector(selectRestaurant);
   const items = useSelector(selectBasketItems);
+  const basketTotal = useSelector(selectBasketTotal);
   const [groupedItemsInBasket, setGroupedItemsInBasket] = useState([]);
   const dispatch = useDispatch();
 
@@ -35,7 +40,7 @@ const BasketScreen = () => {
   return (
     <>
       <SafeAreaView style={SafeViewAndroid.AndroidSafeArea}>
-        <View className="bg-gray-100">
+        <View className="bg-gray-100 h-[100%]">
           <View className="bg-white border-b border-[#f59e0b] shadow-xs p-5">
             <View className="">
               <Text className="text-xl font-bold text-center">Basket</Text>
@@ -50,7 +55,7 @@ const BasketScreen = () => {
               <XCircleIcon size={50} color="#f59e0b" />
             </TouchableOpacity>
           </View>
-          <View className="flex-row items-center space-x-4 px-4 py-3 bg-white my-5">
+          <View className="flex-row items-center space-x-4 px-4 py-3 bg-white my-3">
             <Image source={Logo} className="h-10 w-9" />
             <Text className="flex-1">Deliver in 50-75 min</Text>
             <TouchableOpacity>
@@ -80,6 +85,31 @@ const BasketScreen = () => {
               </View>
             ))}
           </ScrollView>
+          <View className="p-5 bg-white space-y-4 mt-3">
+            <View className="flex-row justify-between">
+              <Text className="text-gray-400">Subtotal</Text>
+              <Text className="text-gray-400">
+                <Currency quantity={basketTotal} currency="GBP" />
+              </Text>
+            </View>
+            <View className="flex-row justify-between">
+              <Text className="text-gray-400">Delivery free</Text>
+              <Text className="text-gray-400">
+                <Currency quantity={5.99} currency="GBP" />
+              </Text>
+            </View>
+            <View className="flex-row justify-between">
+              <Text>Order total</Text>
+              <Text className="font-extrabold">
+                <Currency quantity={basketTotal - 5.99} currency="GBP" />
+              </Text>
+            </View>
+            <TouchableOpacity className="rounded-lg bg-[#f59e0b] p-4">
+              <Text className="text-center text-white text-lg font-bold">
+                Place Order
+              </Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </SafeAreaView>
     </>

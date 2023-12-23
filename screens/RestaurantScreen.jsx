@@ -101,7 +101,9 @@ const RestaurantScreen = () => {
           </TouchableOpacity>
         </View>
         <View className="pb-36">
-          <Text className="p-4 font-bold text-xl pb-2 bg-amber-200">Menu</Text>
+          <Text className="p-4 font-bold text-xl pb-2 bg-amber-200 text-center">
+            Menu
+          </Text>
           {dishes?.map((dish) => (
             <DishRow
               key={dish._id}
