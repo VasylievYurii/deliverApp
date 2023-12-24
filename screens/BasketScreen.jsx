@@ -39,7 +39,10 @@ const BasketScreen = () => {
 
   return (
     <>
-      <SafeAreaView style={SafeViewAndroid.AndroidSafeArea}>
+      <SafeAreaView
+        style={SafeViewAndroid.AndroidSafeArea}
+        className="bg-white"
+      >
         <View className="bg-gray-100 h-[100%]">
           <View className="bg-white border-b border-[#f59e0b] shadow-xs p-5">
             <View className="">
@@ -104,7 +107,10 @@ const BasketScreen = () => {
                 <Currency quantity={basketTotal - 5.99} currency="GBP" />
               </Text>
             </View>
-            <TouchableOpacity className="rounded-lg bg-[#f59e0b] p-4">
+            <TouchableOpacity
+              onPress={() => navigation.navigate("PreparingOrder")}
+              className="rounded-lg bg-[#f59e0b] p-4"
+            >
               <Text className="text-center text-white text-lg font-bold">
                 Place Order
               </Text>

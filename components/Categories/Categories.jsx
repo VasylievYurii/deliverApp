@@ -1,4 +1,4 @@
-import { View, Text, ScrollView } from "react-native";
+import { ScrollView } from "react-native";
 import React, { useEffect, useState } from "react";
 import CategoriesCard from "../CategoriesCard";
 import client, { urlFor } from "../../sanity";
@@ -25,7 +25,6 @@ const Categories = () => {
       horizontal
       showsHorizontalScrollIndicator={false}
     >
-      {/* Categories Card */}
       {categories?.map((category) => {
         return (
           <CategoriesCard

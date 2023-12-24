@@ -9,6 +9,9 @@ import {
 import React, { useEffect, useLayoutEffect, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import SafeViewAndroid from "../components/SafeViewAndroid/SafeViewAndroid";
+import Categories from "../components/Categories";
+import FeaturedRow from "../components/FeaturedRow";
+import client from "../sanity";
 import Logo from "../assets/logo.png";
 import {
   UserIcon,
@@ -16,9 +19,6 @@ import {
   AdjustmentsHorizontalIcon,
   MagnifyingGlassIcon,
 } from "react-native-heroicons/outline";
-import Categories from "../components/Categories";
-import FeaturedRow from "../components/FeaturedRow";
-import client from "../sanity";
 
 const HomeScreen = () => {
   const navigation = useNavigation();
@@ -43,9 +43,11 @@ restaurants[]->{..., dishes[]->}}`
 
   return (
     <>
-      <SafeAreaView style={SafeViewAndroid.AndroidSafeArea}>
+      <SafeAreaView
+        style={SafeViewAndroid.AndroidSafeArea}
+        className="bg-white"
+      >
         <View className="bg-white p-5 pb-3">
-          {/* Header */}
           <View className="flex-row mb-3">
             <View className="flex-row flex-1 items-center space-x-2">
               <Image source={Logo} className="h-10 w-9" />
@@ -61,10 +63,8 @@ restaurants[]->{..., dishes[]->}}`
                 </View>
               </View>
             </View>
-
             <UserIcon size={35} color="#f59e0b" />
           </View>
-          {/* Search */}
           <View className="flex-row space-x-2 items-center">
             <View className="flex-row flex-1 space-x-2 bg-gray-100 p-2 rounded-md">
               <MagnifyingGlassIcon size={30} color="gray" />
@@ -78,14 +78,9 @@ restaurants[]->{..., dishes[]->}}`
           </View>
         </View>
       </SafeAreaView>
-      {/* Body */}
       <ScrollView className="bg-gray-100 flex-1">
-        {/* Categories */}
         <Categories />
-        {/* Featured */}
-
         {featuredCategories?.map((category) => {
-          // console.log("category:", category);
           return (
             <FeaturedRow
               key={category._id}
