@@ -30,10 +30,10 @@ const DeliveryScreen = () => {
           <Text className="text-white text-lg font-light">Order Help</Text>
         </View>
         <View className="bg-white mx-5 my-2 rounded-md p-6 z-50 shadow-md">
-          <View className="flex-row justify-between">
+          <View className="flex-row justify-between items-center">
             <View>
               <Text className="text-lg text-gray-400">Estimated Arrival</Text>
-              <Text className="text-4xl font-bold">45-55 Minutes</Text>
+              <Text className="text-3xl font-bold">45-56 Minutes</Text>
             </View>
             <Image source={Bike} className="h-16 w-16" />
           </View>
@@ -56,7 +56,7 @@ const DeliveryScreen = () => {
           longitudeDelta: 0.005,
         }}
         className="flex-1 -mt-10 -mb-2 z-10"
-        mapType="mutedStandart"
+        mapType="standard"
       >
         <Marker
           coordinate={{
